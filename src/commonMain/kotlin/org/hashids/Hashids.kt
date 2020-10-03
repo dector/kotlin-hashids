@@ -113,7 +113,7 @@ class Hashids(salt: String = defaultSalt, minHashLength: Int = defaultMinimalHas
      * @return decoded hex numbers string
      */
     fun decodeHex(hash: String): String = decode(hash)
-        .map { it.toHexString().substring(1) }
+        .map { it.toString(16).substring(1) }
         .toString()
 
     private fun whatSalt(aSalt: String) = when {
@@ -317,5 +317,3 @@ private data class AlphabetAndSeparators(val alphabet: String, val separators: S
 private data class ShuffleData(val alphabet: List<Char>, val salt: String, val cumulative: Int, val saltReminder: Int)
 
 private data class HashData(val hash: String, val current: Long)
-
-private fun Long.toHexString() = "%x".format(this)

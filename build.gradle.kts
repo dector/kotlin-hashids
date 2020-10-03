@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.jetbrains.kotlin.jvm").version("1.4.10")
+    kotlin("multiplatform") version("1.4.10")
 }
 
 version = "2.0.0"
@@ -12,13 +12,21 @@ repositories {
     jcenter()
 }
 
-dependencies {
-    testImplementation("org.junit.jupiter:junit-jupiter:5.5.1")
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.5.1")
-    runtime("org.junit.jupiter:junit-jupiter-engine:5.5.1")
+kotlin {
+    jvm()
+
+    sourceSets {
+        val jvmTest by getting {
+            dependencies {
+                implementation("org.junit.jupiter:junit-jupiter:5.5.1")
+                implementation("org.junit.jupiter:junit-jupiter-api:5.5.1")
+                implementation("org.junit.jupiter:junit-jupiter-engine:5.5.1")
+            }
+        }
+    }
 }
 
-tasks.test {
+tasks.withType<Test> {
     useJUnitPlatform()
 
     testLogging {
@@ -26,8 +34,9 @@ tasks.test {
     }
 }
 
-tasks.withType<KotlinCompile>().configureEach {
+tasks.withType<KotlinCompile>() {
     kotlinOptions.jvmTarget = "1.8"
+    kotlinOptions.useIR = true
 }
 
 tasks.withType<Jar> {
