@@ -1,8 +1,8 @@
 package org.hashids
 
-import java.lang.Long.toHexString
 import kotlin.math.ceil
 import kotlin.math.pow
+
 
 /**
  * Hashids developed to generate short hashes from numbers (like YouTube).
@@ -113,8 +113,8 @@ class Hashids(salt: String = defaultSalt, minHashLength: Int = defaultMinimalHas
      * @return decoded hex numbers string
      */
     fun decodeHex(hash: String): String = decode(hash)
-            .map { toHexString(it).substring(1) }
-            .toString()
+        .map { it.toHexString().substring(1) }
+        .toString()
 
     private fun whatSalt(aSalt: String) = when {
         aSalt.isEmpty() -> defaultSalt
@@ -295,6 +295,7 @@ class Hashids(salt: String = defaultSalt, minHashLength: Int = defaultMinimalHas
 
     private tailrec fun ensureMinimalLength(halfLength: Int, alphabet: String, returnString: String): String = when {
         returnString.length < finalHashLength -> {
+            @Suppress("NamedArgsPositionMismatch")
             val newAlphabet = consistentShuffle(alphabet, alphabet)
             val tempReturnString = newAlphabet.substring(halfLength) + returnString + newAlphabet.substring(0, halfLength)
             val excess = tempReturnString.length - finalHashLength
@@ -316,3 +317,5 @@ private data class AlphabetAndSeparators(val alphabet: String, val separators: S
 private data class ShuffleData(val alphabet: List<Char>, val salt: String, val cumulative: Int, val saltReminder: Int)
 
 private data class HashData(val hash: String, val current: Long)
+
+private fun Long.toHexString() = "%x".format(this)
