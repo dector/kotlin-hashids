@@ -4,7 +4,7 @@ plugins {
     id("org.jetbrains.kotlin.jvm").version("1.4.10")
 }
 
-version = "1.0.4"
+version = "2.0.0"
 group = "org.hashids"
 description = "Kotlin implementation of Hashids https://hashids.org"
 
