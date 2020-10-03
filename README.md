@@ -1,8 +1,9 @@
 # Hashids.kt
 
-A Kotlin class to generate YouTube-like hashes from one or many numbers.
+A Kotlin Multiplatform library to generate YouTube-like hashes from one or many numbers.
 
 Ported from Java [Hashids.java](https://github.com/jiecao-fm/hashids-java/blob/master/src/main/java/org/hashids/Hashids.java) by [fanweixiao](https://github.com/fanweixiao) (is port of javascript [hashids.js](https://github.com/ivanakimov/hashids.js/blob/master/lib/hashids.js) by [Ivan Akimov](https://github.com/ivanakimov))
+Prepared for Kotlin Multiplatform by [dector](https://github.com/dector).
 
 ## What is it?
 
@@ -22,10 +23,35 @@ All (long) integers need to be greater than or equal to zero.
 
 ## Usage
 
+#### Install library
+
+##### With Gradle and jitpack.io
+
+[Jitpack web-page](https://jitpack.io/#dector/kotlin-hashids/2.0.0)
+
+Configure jitpack repo:
+```kotlin
+repositories {
+    maven("https://jitpack.io")
+}
+```
+
+Add dependency:
+```kotlin
+dependencies {
+    implemenation("com.github.dector:kotlin-hashids:2.0.0")
+}
+```
+
+##### Copy-pasting (not recommended)
+
+Whole implementation is in a single file: `src/commonMain/kotlin/org/hashids/Hashids.kt`.
+You can just copy it and past into your project.
+
 #### Import the package
 
-```java
-import org.hashids;
+```kotlin
+import org.hashids.Hashids
 ```
 
 #### Encrypting one number
