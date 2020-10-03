@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.jetbrains.kotlin.jvm").version("1.3.41")
+    id("org.jetbrains.kotlin.jvm").version("1.4.10")
 }
 
 version = "1.0.4"
@@ -13,7 +13,6 @@ repositories {
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     testImplementation("org.junit.jupiter:junit-jupiter:5.5.1")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.5.1")
     runtime("org.junit.jupiter:junit-jupiter-engine:5.5.1")
